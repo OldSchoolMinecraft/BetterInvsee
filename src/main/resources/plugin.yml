@@ -1,0 +1,8 @@
+name: BetterInvsee
+version: 1.0
+author: moderator_man
+main: net.oldschoolminecraft.bsee.BetterInvsee
+commands:
+  invsee:
+    description: Opens the inventory of another player.
+    usage: /invsee <player>
