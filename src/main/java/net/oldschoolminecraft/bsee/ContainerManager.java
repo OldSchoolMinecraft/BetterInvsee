@@ -62,6 +62,8 @@ public class ContainerManager
         if (isDoubleChest) {
             ro = new WrappedChest(player, block, nms.inventory, new InventoryLargeChest("Large Chest", backing, ((CraftInventory)((CraftChest)otherChest.getState()).getInventory()).getInventory()));
             System.out.println("Opened wrapped double chest for " + player.getName());
+            System.out.println("1st size: " + backing.getContents().length);
+            System.out.println("2nd size: " + ((CraftInventory)((CraftChest)otherChest.getState()).getInventory()).getInventory().getContents().length);
         } else {
             ItemStack[] singleInvContents = backing.getContents();
             System.out.println("singleInvContents size: " + singleInvContents.length);

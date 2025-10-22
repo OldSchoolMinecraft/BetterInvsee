@@ -32,18 +32,23 @@ public class WrappedChest extends ContainerChest
     // detect when items are moved in/out of the chest
     @Override public ItemStack a(int slot, int button, boolean shift, EntityHuman who) {
         ItemStack ret = super.a(slot, button, shift, who);
-        ContainerManager.getInstance().getContainerByTarget(viewer).setTargetViewContents(playerInv.getContents());
+        if (playerInv == null) System.out.println("playerInv == null");
+        if (viewer == null) System.out.println("viewer == null");
+        WrappedChestInventoryViewer inventoryViewer = ContainerManager.getInstance().getContainerByTarget(viewer);
+        if (inventoryViewer != null) inventoryViewer.setTargetViewContents(playerInv.getContents());
         return ret;
     }
 
     @Override protected void a(ItemStack stack, int from, int to, boolean reverse) {
         super.a(stack, from, to, reverse);
-        ContainerManager.getInstance().getContainerByTarget(viewer).setTargetViewContents(playerInv.getContents());
+        WrappedChestInventoryViewer inventoryViewer = ContainerManager.getInstance().getContainerByTarget(viewer);
+        if (inventoryViewer != null) inventoryViewer.setTargetViewContents(playerInv.getContents());
     }
 
     @Override public ItemStack a(int slotIndex) {
         ItemStack ret = super.a(slotIndex);
-        ContainerManager.getInstance().getContainerByTarget(viewer).setTargetViewContents(playerInv.getContents());
+        WrappedChestInventoryViewer inventoryViewer = ContainerManager.getInstance().getContainerByTarget(viewer);
+        if (inventoryViewer != null) inventoryViewer.setTargetViewContents(playerInv.getContents());
         return ret;
     }
 
