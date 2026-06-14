@@ -72,15 +72,4 @@ public class PeekInventory implements IInventory
     {
         return targetInv.getContents();
     }
-
-    public ItemStack[] getScratch()
-    {
-        ItemStack[] contents = targetInv.getContents();
-        ItemStack[] scratch = new ItemStack[14];
-        for (int i = 40; i < contents.length; i++)
-        {
-            scratch[i - 40] = contents[i];
-        }
-        return scratch;
-    }
 }
