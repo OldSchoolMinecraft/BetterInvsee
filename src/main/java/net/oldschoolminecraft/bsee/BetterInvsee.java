@@ -9,12 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BetterInvsee extends JavaPlugin
 {
-    private static BetterInvsee instance;
-
     public void onEnable()
     {
-        instance = this;
-
         getCommand("invsee").setExecutor(new InvseeCommand());
 
         System.out.println("BetterInvsee enabled");
