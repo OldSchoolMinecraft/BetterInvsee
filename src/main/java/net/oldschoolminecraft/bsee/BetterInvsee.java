@@ -9,8 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BetterInvsee extends JavaPlugin
 {
+    private UpdateManager updateManager;
+
     public void onEnable()
     {
+        updateManager = new UpdateManager(this, "https://micro.os-mc.net/plugin_ci/BetterInvsee/latest");
+        updateManager.checkForUpdates();
+
         getCommand("invsee").setExecutor(new InvseeCommand());
 
         System.out.println("BetterInvsee enabled");
@@ -27,6 +32,7 @@ public class BetterInvsee extends JavaPlugin
 
     public void onDisable()
     {
+        updateManager.checkForUpdates();
         System.out.println("BetterInvsee disabled");
     }
 }
