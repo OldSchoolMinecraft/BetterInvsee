@@ -34,42 +34,6 @@ public class BetterInvsee extends JavaPlugin
         PeekInventory view = new PeekInventory(targetInv, target.getName());
 
         handle.a(view);
-        Container opened = handle.activeContainer;
-
-        // No close event exists on this API, so poll for the window closing to return
-        // any items the viewer left in the filler slots (slots 40-53).
-        scheduleScratchReturn(viewer, handle, opened, view);
-    }
-
-    private static void scheduleScratchReturn(Player viewer, EntityPlayer handle, Container opened, PeekInventory view)
-    {
-        final int[] taskId = new int[1];
-        taskId[0] = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, () ->
-        {
-            boolean stillOpen = viewer.isOnline() && handle.activeContainer == opened;
-            if (stillOpen) return;
-            returnScratch(viewer, view);
-            Bukkit.getScheduler().cancelTask(taskId[0]);
-        }, 10L, 10L);
-    }
-
-    private static void returnScratch(Player viewer, PeekInventory view)
-    {
-        net.minecraft.server.ItemStack[] scratch = view.getScratch();
-        for (int i = 0; i < scratch.length; i++)
-        {
-            net.minecraft.server.ItemStack nms = scratch[i];
-            if (nms == null) continue;
-            scratch[i] = null;
-            if (!viewer.isOnline())
-                continue; // viewer gone; their session items vanish with the session
-            ItemStack stack = new CraftItemStack(nms);
-            HashMap<Integer, ItemStack> overflow = viewer.getInventory().addItem(stack);
-            for (ItemStack drop : overflow.values())
-            {
-                viewer.getWorld().dropItem(viewer.getLocation(), drop);
-            }
-        }
     }
 
     public void onDisable()
