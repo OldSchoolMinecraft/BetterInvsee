@@ -4,10 +4,7 @@ import net.minecraft.server.ContainerChest;
 import net.minecraft.server.EntityHuman;
 import net.minecraft.server.IInventory;
 import net.minecraft.server.ItemStack;
-import org.bukkit.block.Chest;
-import org.bukkit.block.ContainerBlock;
 import org.bukkit.craftbukkit.block.CraftBlock;
-import org.bukkit.craftbukkit.block.CraftChest;
 import org.bukkit.entity.Player;
 
 /**
@@ -52,5 +49,8 @@ public class WrappedChest extends ContainerChest
         return ret;
     }
 
-    @Override public boolean b(EntityHuman human) { return true; }
+    @Override public boolean b(EntityHuman human)
+    {
+        return super.b(human);
+    }
 }

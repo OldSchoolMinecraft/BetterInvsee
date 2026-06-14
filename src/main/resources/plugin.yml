@@ -6,3 +6,5 @@ commands:
   invsee:
     description: Opens the inventory of another player.
     usage: /invsee <player>
+    aliases:
+      - peek
