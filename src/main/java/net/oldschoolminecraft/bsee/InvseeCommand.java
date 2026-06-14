@@ -32,8 +32,7 @@ public class InvseeCommand implements CommandExecutor
         }
 
         Player target = Bukkit.getPlayer(args[0]);
-
-        ContainerManager.getInstance().openInvseeView((Player) sender, target, ContainerManager.getInstance().buildBacking54("Inventory of " + target.getName(), ((CraftPlayer)sender).getHandle().inventory.items, ((CraftPlayer)target).getHandle().inventory.items));
+        BetterInvsee.peek((Player) sender, target);
 
         return true;
     }
